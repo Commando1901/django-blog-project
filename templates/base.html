@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Blog{% endblock %}</title>
+
+    {% block extra_css %}{% endblock %}
+
+        <style>
+body {
+    margin: 0;
+    background: #ffffff;
+    font-family: 'Segoe UI';
+}
+
+.topbar {
+    background: #000000;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.topbar a {
+    color: white;
+    margin-left: 25px;
+    text-decoration: none;
+}
+
+.section {
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.blog-card1 {
+    border-bottom: 1px solid #ddd;
+    padding: 20px 10px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+.blog-card2 {
+    border-bottom: 1px solid #ddd;
+    padding: 20px 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+
+</style>
+</head>
+
+<body>
+    <div class="topbar" >
+    <h2 style="color:white;">MyBlog</h2>
+    <div>
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/home/">Home</a>
+        <a href="/create_blog/">Create Blog</a>
+        <a href="/logout_confirm/">Logout</a>
+    </div>
+</div>
+<div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    
+</body>
+</html>

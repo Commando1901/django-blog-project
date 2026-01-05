@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Logout_confirm{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/logout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="logout-box">
+    <h2>Are you sure you want to logout?</h2>
+
+    <div class="btn">
+        <a href="/logout_view/" class="yes-btn">Yes, Logout</a>
+        <a href="/dashboard/" class="no-btn">Cancel</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/create_blog.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <h2>Create New Blog ✍️</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Blog Title</label>
+            <input type="text" name="title" placeholder="Enter blog title..." required>
+
+            <label>Blog Content</label>
+            <textarea name="content" rows="7" placeholder="Write your blog content..." required></textarea>
+
+            <button type="submit">Publish Blog</button>
+        </form>
+
+        <div class="back-link">
+            <a href="/dashboard/">⬅ Back to Dashboard</a>
+        </div>
+    </div>
+{% endblock %}

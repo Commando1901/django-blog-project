@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+body {
+    margin: 0;
+    background: #ffffff;
+    font-family: 'Segoe UI';
+}
+
+.topbar {
+    background: #000000;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.topbar a {
+    color: white;
+    margin-left: 25px;
+    text-decoration: none;
+}
+
+.section {
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.blog-card1 {
+    border-bottom: 1px solid #ddd;
+    padding: 20px 10px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+.blog-card2 {
+    border-bottom: 1px solid #ddd;
+    padding: 20px 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+<body>
+    
+<div class="topbar">
+    <h2>MyBlog</h2>
+    <div>
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/home/">Home</a>
+        <a href="/create_blog/">Create Blog</a>
+        <a href="/logout_confirm/">Logout</a>
+    </div>
+</div>
+
+<div class="section">
+    <h1>Welcome Back, {{ request.user.username }} ✨</h2>
+
+    <div class="blog-card1">
+        <h2>Your Blogs</h3>
+        {% if user_posts %}
+            {% for post in user_posts %}
+                
+                <div class="blog-card2">
+                <h4>{{ post.title }}</h4>
+                <p>{{ post.content|slice:":120" }}...</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No posts yet.</p>
+        {% endif %}
+    </div>
+
+</div>
+        
+</body>
+</html>

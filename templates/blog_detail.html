@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ post.title }}</h2>
+
+<p>{{ post.content }}</p>
+
+<small>
+    By {{ post.author.username }} • {{ post.created_at|date:"M d, Y" }}
+</small>
+
+<br><br>
+
+<h3>Comments ({{ comments.count }})</h3>
+
+{% for comment in comments %}
+    <div style="border-bottom:1px solid #ddd; margin-bottom:10px;">
+        <strong>{{ comment.user.username }}</strong>
+        <small>{{ comment.created_at|date:"M d, Y H:i" }}</small>
+        <p>{{ comment.text }}</p>
+    </div>
+{% empty %}
+    <p>No comments yet.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<form method="POST">
+    {% csrf_token %}
+    <textarea name="comment" required placeholder="Write your comment..."></textarea>
+    <br>
+    <button type="submit">Post Comment</button>
+</form>
+{% else %}
+<p>You must be logged in to comment.</p>
+{% endif %}
+
+<a href="{% url 'home' %}">⬅ Back</a>
+{% endblock %}

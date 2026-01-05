@@ -1,0 +1,27 @@
+.logout-box {
+    width: 350px;
+    margin: 120px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logout-box .btns a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.yes-btn {
+    background: #ff4d4d;
+    color: white;
+}
+
+.no-btn {
+    background: #444;
+    color: white;
+}
