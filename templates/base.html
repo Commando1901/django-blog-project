@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,55 +8,102 @@
 
     {% block extra_css %}{% endblock %}
 
-        <style>
-body {
-    margin: 0;
-    background: #ffffff;
-    font-family: 'Segoe UI';
-}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-.topbar {
-    background: #000000;
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.topbar a {
-    color: white;
-    margin-left: 25px;
-    text-decoration: none;
-}
+        body {
+            background: #f5f6f8;
+            font-family: 'Inter', sans-serif;
+            color: #222;
+        }
 
-.section {
-    width: 90%;
-    margin: auto;
-    margin-top: 30px;
-}
+        /* ===== TOP BAR ===== */
+        .topbar {
+            background: linear-gradient(90deg, #2f4f5f, #3a647a);
+            color: white;
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.blog-card1 {
-    border-bottom: 1px solid #ddd;
-    padding: 20px 10px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.3);
-}
+        .topbar h2 {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
 
-.blog-card2 {
-    border-bottom: 1px solid #ddd;
-    padding: 20px 20px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 1%;
-    box-shadow: 0 0 25px rgba(0,0,0,0.3);
-}
+        .topbar a {
+            color: #e6eef3;
+            margin-left: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
 
+        .topbar a:hover {
+            color: #ffffff;
+        }
 
-</style>
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        /* ===== COMMON SECTIONS ===== */
+        .section {
+            margin-top: 40px;
+        }
+
+        /* ===== BLOG CARDS (UPGRADED LOOK) ===== */
+        .blog-card1,
+        .blog-card2 {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .blog-card1:hover,
+        .blog-card2:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .topbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px;
+            }
+
+            .topbar a {
+                margin-left: 15px;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="topbar" >
-    <h2 style="color:white;">MyBlog</h2>
+
+<!-- NAVBAR -->
+<div class="topbar">
+    <h2>MyBlog</h2>
     <div>
         <a href="/dashboard/">Dashboard</a>
         <a href="/home/">Home</a>
@@ -65,9 +111,11 @@ body {
         <a href="/logout_confirm/">Logout</a>
     </div>
 </div>
+
+<!-- CONTENT -->
 <div class="container">
-        {% block content %}{% endblock %}
-    </div>
-    
+    {% block content %}{% endblock %}
+</div>
+
 </body>
 </html>

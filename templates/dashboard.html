@@ -4,51 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-body {
-    margin: 0;
-    background: #ffffff;
-    font-family: 'Segoe UI';
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.topbar {
-    background: #000000;
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-}
+        body {
+            background: #f5f6f8;
+            font-family: 'Inter', sans-serif;
+            color: #222;
+        }
 
-.topbar a {
-    color: white;
-    margin-left: 25px;
-    text-decoration: none;
-}
+        /* ===== TOP BAR ===== */
+        .topbar {
+            background: linear-gradient(90deg, #2f4f5f, #3a647a);
+            color: white;
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.section {
-    width: 90%;
-    margin: auto;
-    margin-top: 30px;
-}
+        .topbar h2 {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
 
-.blog-card1 {
-    border-bottom: 1px solid #ddd;
-    padding: 20px 10px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.3);
-}
+        .topbar a {
+            color: #e6eef3;
+            margin-left: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-.blog-card2 {
-    border-bottom: 1px solid #ddd;
-    padding: 20px 20px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 1%;
-    box-shadow: 0 0 25px rgba(0,0,0,0.3);
-}
-</style>
+        .topbar a:hover {
+            color: #ffffff;
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .section h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        /* ===== MAIN CARD ===== */
+        .blog-card1 {
+            background: white;
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+        }
+
+        .blog-card1 h2 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* ===== BLOG LIST ===== */
+        .blog-card2 {
+            background: #f9fafb;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 18px;
+            border: 1px solid #ececec;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .blog-card2:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+        }
+
+        .blog-card2 h4 {
+            font-size: 17px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .blog-card2 p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* ===== EMPTY ===== */
+        .blog-card1 p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .topbar {
+                flex-direction: column;
+                gap: 12px;
+                padding: 20px;
+            }
+
+            .section {
+                width: 95%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
+
 <div class="topbar">
     <h2>MyBlog</h2>
     <div>
@@ -60,24 +135,23 @@ body {
 </div>
 
 <div class="section">
-    <h1>Welcome Back, {{ request.user.username }} ✨</h2>
+    <h1>Welcome Back, {{ request.user.username }} ✨</h1>
 
     <div class="blog-card1">
-        <h2>Your Blogs</h3>
+        <h2>Your Blogs</h2>
+
         {% if user_posts %}
             {% for post in user_posts %}
-                
                 <div class="blog-card2">
-                <h4>{{ post.title }}</h4>
-                <p>{{ post.content|slice:":120" }}...</p>
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.content|slice:":120" }}...</p>
                 </div>
             {% endfor %}
         {% else %}
             <p>No posts yet.</p>
         {% endif %}
     </div>
-
 </div>
-        
+
 </body>
 </html>

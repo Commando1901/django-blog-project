@@ -1,44 +1,279 @@
 {% extends "base.html" %}
-<p>Logged in as: {{ request.user }}</p>
 
-{% block title %}All Blogs{% endblock %}
+{% block title %}Explore Blogs{% endblock %}
 
 {% block content %}
-<div class="section">
-    <h2>Explore Blogs From Everyone </h2>
+
+<style>
+.hero {
+    height: 420px;
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("https://source.unsplash.com/1600x900/?travel,nature");
+    background-size: cover;
+    background-position: center;
+    border-radius: 24px;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 60px;
+}
+
+.hero-content {
+    padding: 40px;
+    max-width: 600px;
+    color: white;
+}
+
+.hero-content .tag {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.hero-content h1 {
+    font-size: 34px;
+    margin: 14px 0;
+}
+
+.hero-content p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* ===== BLOG SECTION ===== */
+.blog-header {
+    margin-bottom: 25px;
+}
+
+.blog-header h2 {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.blog-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* ===== GRID ===== */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+}
+
+/* ===== CARD ===== */
+.blog-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.blog-card-content {
+    padding: 20px;
+}
+
+.blog-card-content h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.blog-card-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ===== CARD FOOTER ===== */
+.blog-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #777;
+}
+
+.blog-footer button {
+    border: none;
+    background: #f1f5f9;
+    border-radius: 20px;
+    padding: 6px 14px;
+    cursor: pointer;
+}
+
+.blog-footer button:hover {
+    background: #e2e8f0;
+}
+
+/* ===== AUTHOR ACTIONS ===== */
+.author-actions a {
+    font-size: 13px;
+    color: #444;
+    margin-right: 8px;
+}
+
+
+/* ===== FOOTER ===== */
+footer {
+    background: #0f172a;
+    color: #e5e7eb;
+    margin-top: 80px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.footer-content h3,
+.footer-content h4 {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.footer-content p {
+    font-size: 14px;
+    color: #cbd5f5;
+    margin: 6px 0;
+}
+
+.footer-content input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.footer-content button {
+    margin-top: 10px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(90deg, #38bdf8, #6366f1);
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.footer-content button:hover {
+    opacity: 0.9;
+}
+
+.copy {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+</style>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="tag">Community</span>
+        <h1>Explore Blogs From Everyone</h1>
+        <p>Discover stories, experiences, and ideas shared by people around the world.</p>
+    </div>
+</section>
+
+<!-- BLOG LIST -->
+<section class="section">
+
+    <div class="blog-header">
+        <h2>Latest Blogs</h2>
+        <p>Fresh content curated from our blogging community.</p>
+    </div>
 
     {% if all_posts %}
-    {% for post in all_posts %}
-    <div class="blog-card2">
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content|truncatewords:30 }}</p>
+    <div class="blog-grid">
 
-        <a href="{% url 'blog_detail' post.id %}">Read More</a>
+        {% for post in all_posts %}
+        <div class="blog-card">
 
-    <br>
+            <!-- IMAGE (static random image for now) -->
+            <img src="https://source.unsplash.com/600x400/?blog,travel,{{ forloop.counter }}" alt="">
 
-        <small>By: {{ post.author.username }} * {{ post.created_at|date:"M d, Y" }}</small>
+            <div class="blog-card-content">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content|truncatewords:25 }}</p>
 
-       <form method="POST" action="{% url 'like_blog' post.id %}">
-            {% csrf_token %}
-            <button type="submit">
-                ❤️ {{ post.likes.count }}
-            </button>
-        </form>
+                <a href="{% url 'blog_detail' post.id %}">Read More →</a>
 
-        <!-- Edit & Delete (ONLY author can see) -->
+                <div class="blog-footer">
+                    <small>
+                        {{ post.author.username }} · {{ post.created_at|date:"M d, Y" }}
+                    </small>
+
+                    <form method="POST" action="{% url 'like_blog' post.id %}">
+                        {% csrf_token %}
+                        <button type="submit">
+                            ❤️ {{ post.likes.count }}
+                        </button>
+                    </form>
+                </div>
+
                 {% if post.author == request.user %}
-                    <br><br>
-                    <a href="{% url 'edit_blog' post.id %}">✏️ Edit</a> |
+                <div class="author-actions">
+                    <a href="{% url 'edit_blog' post.id %}">✏️ Edit</a>
                     <a href="{% url 'delete_blog' post.id %}"
                        onclick="return confirm('Are you sure you want to delete this blog?');">
                         🗑 Delete
                     </a>
+                </div>
                 {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
     </div>
-    {% endfor %}
     {% else %}
-    <p>No blogs yet.</p>
+        <p>No blogs yet.</p>
     {% endif %}
-</div>
+
+</section>
+<footer>
+  <div class="footer-content">
+    <div>
+      <h3>MyBlog</h3>
+      <p>Share your thoughts, ideas & experiences with the world.</p>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <p>Contact Us</p>
+      <p>FAQ</p>
+    </div>
+    <div>
+      <h4>Get Updates</h4>
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </div>
+  <p class="copy">© 2026 MyBlog. All rights reserved.</p>
+</footer>
+
+
 {% endblock %}
+
+

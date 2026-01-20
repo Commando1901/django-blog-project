@@ -1,14 +1,101 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/create_blog.css' %}">
-{% endblock %}
 
 {% block content %}
+<style>
+    /* Page container */
+.create-blog-container {
+    max-width: 700px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 35px 40px;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
 
+/* Heading */
+.create-blog-container h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #222;
+}
 
-    <div class="container">
+/* Form labels */
+.create-blog-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+/* Inputs & textarea */
+.create-blog-container input,
+.create-blog-container textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.create-blog-container input:focus,
+.create-blog-container textarea:focus {
+    outline: none;
+    border-color: #3a647a;
+    box-shadow: 0 0 0 3px rgba(58, 100, 122, 0.15);
+}
+
+/* Submit button */
+.create-blog-container button {
+    background: linear-gradient(90deg, #2f4f5f, #3a647a);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.create-blog-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Back link */
+.back-link {
+    margin-top: 25px;
+}
+
+.back-link a {
+    font-size: 14px;
+    color: #3a647a;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .create-blog-container {
+        margin: 30px 15px;
+        padding: 25px;
+    }
+}
+
+</style>
+
+    <div class="create-blog-container">
         <h2>Create New Blog ✍️</h2>
 
         <form method="POST">

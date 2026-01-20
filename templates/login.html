@@ -5,145 +5,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sign up form</title>
+    <title>Login</title>
+
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #000;
+    }
+
+    /* Background */
+    .image {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(60%);
+        z-index: -1;
+    }
+
+    /* Layout */
+    .container {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8%;
+    }
+
+    /* Left Section */
+    .container-left {
+        color: white;
+        max-width: 420px;
+    }
+
+    .container-left h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+
+    .container-left p {
+        font-size: 16px;
+        opacity: 0.9;
+    }
+
+    /* Right Card */
+    .container-right {
+        background: rgba(255,255,255,0.95);
+        padding: 40px;
+        width: 420px;
+        border-radius: 20px;
+        box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+    }
+
+    .container-right h1 {
+        margin-bottom: 15px;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 14px;
+        margin: 6px 0 16px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        background: #f7f7f7;
+        font-size: 14px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #3a647a;
+        background: #fff;
+    }
+
+    /* Buttons */
+    .btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .loginbtn {
+        background: linear-gradient(90deg, #2f4f5f, #3a647a);
+        color: white;
+        margin-bottom: 12px;
+    }
+
+    .cancelbtn {
+        background: #eee;
+        color: #333;
+    }
+
+    .btn:hover {
+        opacity: 0.95;
+    }
+
+    /* Links */
+    .links {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 13px;
+    }
+
+    .links a {
+        text-decoration: none;
+        color: #3a647a;
+        font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .container {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container-left {
+            margin-bottom: 30px;
+        }
+    }
+    </style>
 </head>
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box}
-
-{% comment %} /* Full-width input fields */ {% endcomment %}
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  border-radius: 15px;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-{% comment %} /* Set a style for all buttons */ {% endcomment %}
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-button:hover {
-  opacity:1;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  border-radius: 15px;
-  width: 20%;
-  margin: 5px;
-}
-
-/* Add padding to container elements */
-.container-right {
-  padding: 16px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.3);
-  backdrop-filter: blur(15px);
-  padding-bottom: 230px;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.image{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    /* filter: brightness(60%); */
-    z-index: -1;
-}
-
-.container-right{
-        border: 1px solid #ccc;
-        margin-left: 500px;
-}
-
-.container{
-    display: flex;
-}
-
-.container-left{
-    color: white;
-    margin-top: 200px;
-    margin-left: 100px;
-    width: 300px;
-}
-
-{% comment %} /* Change styles for cancel button and signup button on extra small screens */ {% endcomment %}
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-  }
-}
-</style>
 
 <body>
- 
-<img src="{% static 'bg.jpg' %}" class="image"> 
+
+<img src="{% static 'bg.jpg' %}" class="image">
+
 <div class="container">
+
     <div class="container-left">
-        <h1 class="logo">MyBlog</h1>
-        <p class="quote">"Share your thoughts, ideas & experiences with the world."</p>
-    </div> 
-    
+        <h1>MyBlog</h1>
+        <p>"Share your thoughts, ideas & experiences with the world."</p>
+    </div>
+
     <div class="container-right">
-    <form method="POST" action="/login/">
-      {% csrf_token %}
-    
-    <h1>Login</h1>
-    <hr>
+        <form method="POST" action="/login/">
+            {% csrf_token %}
 
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+            <h1>Welcome Back</h1>
+            <hr>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter Username" required>
 
-    
-    <div class="clearfix">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Login</button>
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit" class="btn loginbtn">Login</button>
+            <button type="button" class="btn cancelbtn">Cancel</button>
+
+            <div class="links">
+                <a href="/signup/">Don't have an account? Sign up</a>
+            </div>
+        </form>
     </div>
-  </div>
-  
-</form>
-    </div>
+
+</div>
 
 </body>
 </html>

@@ -1,8 +1,84 @@
-<form method="POST">
-    {% csrf_token %}
-    <input type="text" name="title" value="{{ post.title }}">
-    <br><br>
-    <textarea name="content">{{ post.content }}</textarea>
-    <br><br>
-    <button type="submit">Update</button>
-</form>
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<style>
+/* ===== EDIT BLOG FORM ===== */
+.edit-blog-container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+.edit-blog-container h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* Inputs */
+.edit-blog-container input[type="text"],
+.edit-blog-container textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 18px;
+}
+
+.edit-blog-container textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+.edit-blog-container input:focus,
+.edit-blog-container textarea:focus {
+    outline: none;
+    border-color: #3a647a;
+    box-shadow: 0 0 0 3px rgba(58, 100, 122, 0.15);
+}
+
+/* Button */
+.edit-blog-container button {
+    background: linear-gradient(90deg, #2f4f5f, #3a647a);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.edit-blog-container button:hover {
+    opacity: 0.95;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .edit-blog-container {
+        margin: 20px 15px;
+        padding: 25px;
+    }
+}
+</style>
+
+<div class="edit-blog-container">
+    <h2>Edit Blog ✏️</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="title" value="{{ post.title }}">
+
+        <textarea name="content">{{ post.content }}</textarea>
+
+        <button type="submit">Update Blog</button>
+    </form>
+</div>
+{% endblock %}
