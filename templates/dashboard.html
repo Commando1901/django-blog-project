@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -132,7 +136,7 @@
         <a href="/create_blog/">Create Blog</a>
         <a href="/logout_confirm/">Logout</a>
     </div>
-</div>
+</div> {% endcomment %}
 
 <div class="section">
     <h1>Welcome Back, {{ request.user.username }} ✨</h1>
@@ -152,6 +156,7 @@
         {% endif %}
     </div>
 </div>
+{% endblock %}
 
-</body>
-</html>
+{% comment %} </body>
+</html> {% endcomment %}

@@ -1,44 +1,55 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Explore Blogs{% endblock %}
 
 {% block content %}
 
 <style>
+
 .hero {
+    position: relative;
     height: 420px;
-    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url("https://source.unsplash.com/1600x900/?travel,nature");
-    background-size: cover;
-    background-position: center;
     border-radius: 24px;
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 60px;
+    overflow: hidden;
 }
 
+/* FORCE carousel height */
+.carousel,
+.carousel-inner,
+.carousel-item {
+    height: 100%;
+}
+
+/* FORCE image to fill */
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* overlay */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+}
+
+/* text layer */
 .hero-content {
-    padding: 40px;
-    max-width: 600px;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: white;
+    text-align: center;
 }
 
-.hero-content .tag {
-    background: rgba(255,255,255,0.2);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-.hero-content h1 {
-    font-size: 34px;
-    margin: 14px 0;
-}
-
-.hero-content p {
-    font-size: 14px;
-    opacity: 0.9;
-}
 
 /* ===== BLOG SECTION ===== */
 .blog-header {
@@ -191,6 +202,37 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
+<div id="carouselExampleSlidesOnly"
+     class="carousel slide carousel-fade h-100"
+     data-bs-ride="carousel"
+     data-bs-interval="2000"
+     data-bs-pause="false">
+
+  <div class="carousel-inner h-100">
+    <div class="carousel-item active h-100">
+      <img src="{% static 'images/travel.png' %}" class="d-block w-100 hero-img" alt="travel">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/food.jpg' %}" class="d-block w-100 hero-img" alt="food">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/fashion.webp' %}" class="d-block w-100 hero-img" alt="fashion">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/entertainment.jpg' %}" class="d-block w-100 hero-img" alt="fashion">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/finance.jpg' %}" class="d-block w-100 hero-img" alt="fashion">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/gadget.png' %}" class="d-block w-100 hero-img" alt="fashion">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/lifestyle.jpg' %}" class="d-block w-100 hero-img" alt="fashion">
+    </div>
+  </div>
+</div>
+
     <div class="hero-content">
         <span class="tag">Community</span>
         <h1>Explore Blogs From Everyone</h1>
