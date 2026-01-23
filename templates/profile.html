@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Profile Header */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .profile-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    .profile-info h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .profile-info p {
+      margin: 4px 0;
+      color: #666;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      margin: 20px 0;
+      padding: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .stat span {
+      font-size: 14px;
+      color: #777;
+    }
+
+    /* Blog list */
+    .blog-list {
+      margin-top: 20px;
+    }
+
+    .blog-card {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .blog-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .blog-card p {
+      color: #555;
+      margin: 0 0 10px;
+    }
+
+    .blog-meta {
+      font-size: 14px;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 600px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-header img {
+        margin-bottom: 10px;
+      }
+
+      .stats {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <img src="https://via.placeholder.com/150" alt="Profile Picture">
+      <div class="profile-info">
+        <h2>Mandip patel</h2>
+        <p>mandip@example.com</p>
+        <p>Joined: Jan 2026</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <h3>12</h3>
+        <span>Posts</span>
+      </div>
+      <div class="stat">
+        <h3>48</h3>
+        <span>Likes</span>
+      </div>
+      <div class="stat">
+        <h3>21</h3>
+        <span>Comments</span>
+      </div>
+    </div>
+
+    <!-- Blog List -->
+    <div class="blog-list">
+      <div class="blog-card">
+        <h3>Why I Love Traveling</h3>
+        <p>Travel opens your mind and helps you discover new cultures...</p>
+        <div class="blog-meta">
+          <span>❤️ 10 · 💬 4</span>
+          <span>2 days ago</span>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <h3>Best Street Foods in India</h3>
+        <p>From pani puri to vada pav, Indian street food is unbeatable...</p>
+        <div class="blog-meta">
+          <span>❤️ 18 · 💬 7</span>
+          <span>1 week ago</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
