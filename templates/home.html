@@ -265,7 +265,8 @@ footer {
 
                 <div class="blog-footer">
                     <small>
-                        {{ post.author.username }} · {{ post.created_at|date:"M d, Y" }}
+                        <a href="{% url 'public_profile' post.author.username %}">
+                        {{ post.author.username }}</a> . {{ post.created_at|date:"M d, Y" }}
                     </small>
 
                     <form method="POST" action="{% url 'like_blog' post.id %}">

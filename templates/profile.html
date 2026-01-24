@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,34 +74,32 @@
       color: #777;
     }
 
-    /* Blog list */
-    .blog-list {
-      margin-top: 20px;
-    }
+   /* Blog list */
+    .blog-card2 {
+            background: #f9fafb;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 18px;
+            border: 1px solid #ececec;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
 
-    .blog-card {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
+        .blog-card2:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+        }
 
-    .blog-card h3 {
-      margin: 0 0 8px;
-    }
+        .blog-card2 h4 {
+            font-size: 17px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
 
-    .blog-card p {
-      color: #555;
-      margin: 0 0 10px;
-    }
-
-    .blog-meta {
-      font-size: 14px;
-      color: #777;
-      display: flex;
-      justify-content: space-between;
-    }
+        .blog-card2 p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        } 
 
     @media (max-width: 600px) {
       .profile-header {
@@ -125,50 +126,49 @@
     <div class="profile-header">
       <img src="https://via.placeholder.com/150" alt="Profile Picture">
       <div class="profile-info">
-        <h2>Mandip patel</h2>
-        <p>mandip@example.com</p>
-        <p>Joined: Jan 2026</p>
+        <h2><strong>Username: </strong>{{user_obj.username}}</h2>
+        <p><strong>Email: </strong>{{ user_obj.email }}</p>
+        <p><strong>Bio: </strong>{{ profile.bio }}</p>
+        <p><strong>Joined: </strong>{{ user_obj.date_joined }}</p>
+        {% comment %} {% if is_own_profile %}
+          <a href="{% url 'edit_profile' %}">Edit Profile</a>
+        {% endif %}   {% endcomment %}
       </div>
     </div>
 
     <!-- Stats -->
     <div class="stats">
       <div class="stat">
-        <h3>12</h3>
-        <span>Posts</span>
+        <h3>{{ total_posts }}</h3>
+        <span><strong>Posts</strong></span>
       </div>
       <div class="stat">
-        <h3>48</h3>
-        <span>Likes</span>
+        <h3>{{ total_likes }}</h3>
+        <span><strong>Likes</strong></span>
       </div>
       <div class="stat">
-        <h3>21</h3>
-        <span>Comments</span>
+        <h3>{{ total_comments }}</h3>
+        <span><strong>Comments</strong></span>
       </div>
     </div>
+
+    <h1><strong>Blogs :</strong></h1>
 
     <!-- Blog List -->
-    <div class="blog-list">
-      <div class="blog-card">
-        <h3>Why I Love Traveling</h3>
-        <p>Travel opens your mind and helps you discover new cultures...</p>
-        <div class="blog-meta">
-          <span>❤️ 10 · 💬 4</span>
-          <span>2 days ago</span>
+    {% if user_posts %}
+      {% for post in user_posts %}
+        <div class="blog-card2">
+          <h4>{{ post.title }}</h4>
+          <p>{{ post.content|slice:":120" }}...</p>
         </div>
-      </div>
-
-      <div class="blog-card">
-        <h3>Best Street Foods in India</h3>
-        <p>From pani puri to vada pav, Indian street food is unbeatable...</p>
-        <div class="blog-meta">
-          <span>❤️ 18 · 💬 7</span>
-          <span>1 week ago</span>
-        </div>
-      </div>
-    </div>
+     {% endfor %}
+    {% else %}
+      <p>No posts yet.</p>
+    {% endif %}
 
   </div>
 
 </body>
 </html>
+
+{% endblock %}

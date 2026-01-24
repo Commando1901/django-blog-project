@@ -113,4 +113,46 @@ def like_blog(request, post_id):
 
     return redirect('home')
 
+@login_required
+def profile_view(request):
+    user = request.user
+    profile = user.profile
 
+    user_posts = Blog.objects.filter(author=user)
+
+    total_posts = Blog.objects.filter(author=user).count()
+    total_likes = Like.objects.filter(user=user).count()
+    total_comments = Comment.objects.filter(user=user).count()
+
+    context = {
+        'user_obj': user,
+        'profile': profile,
+        'user_posts': user_posts, 
+        'total_posts': total_posts,
+        'total_likes': total_likes,
+        'total_comments': total_comments,
+    }
+
+    return render(request, 'profile.html', context)
+
+def public_profile_view(request, username):
+    user_obj = get_object_or_404(User, username=username)
+    profile = user_obj.profile
+
+    user_posts = Blog.objects.filter(author=user_obj)
+
+    total_posts = user_posts.count()
+    total_likes = Like.objects.filter(user=user_obj).count()
+    total_comments = Comment.objects.filter(user=user_obj).count()
+
+    context = {
+        'user_obj': user_obj,
+        'profile': profile,
+        'user_posts': user_posts, 
+        'total_posts': total_posts,
+        'total_likes': total_likes,
+        'total_comments': total_comments,
+        'is_own_profile': request.user == user_obj
+    }
+
+    return render(request, 'profile.html', context)

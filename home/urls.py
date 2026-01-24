@@ -17,7 +17,9 @@ urlpatterns = [
     path("blog/<int:id>/", views.blog_detail, name="blog_detail"),
     path("edit/<int:id>/", views.edit_blog, name="edit_blog"),
     path("delete/<int:id>/", views.delete_blog, name="delete_blog"),
-    path('like/<int:post_id>/', views.like_blog, name='like_blog')
+    path('like/<int:post_id>/', views.like_blog, name='like_blog'),
+    path('profile/', views.profile_view, name='profile'),
+    path('profile/<str:username>', views.public_profile_view, name='public_profile')
    
 ]
 
