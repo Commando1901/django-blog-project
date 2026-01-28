@@ -1,12 +1,16 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from home import views
 from django.conf import settings
 from django.conf.urls.static import static
+from .api_views import blog_list_api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.signup, name='signup'),
+
+    path('api/blogs/', blog_list_api, name='blog-list-api'),
+
     path('signup/', views.signup, name='signup'),
     path('login/', views.login_view, name='login'),
     path('dashboard/', views.dashboard, name='dashboard'),
