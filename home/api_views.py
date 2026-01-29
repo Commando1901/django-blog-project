@@ -44,3 +44,18 @@ def blog_create_api(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def blog_delete_api(request, id):
+    try:
+        blog = Blog.objects.get(id=id)
+    except Blog.DoesNotExist:
+        return Response({"error": "Blog Not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    # Only the author to delete
+    if blog.author != request.user:
+        return Response({"error": "You do not have permission to delete this blog."}, status=status.HTTP_403_FORBIDDEN)
+    
+    blog.delete()
+    return Response({"message": "Blog deleted successfully."}, status=status.HTTP_200_OK)
